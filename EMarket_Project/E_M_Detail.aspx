@@ -240,7 +240,7 @@
                 <h3 id="Market"><b>Market</b> </h3>
                 <div id="inpform">
                     <table>
-
+                        
                         <tr>
                             <td class="auto-style13"><b>District :</b>  </td>
                             
@@ -385,9 +385,7 @@
                 <a href="#" onclick="showYardTable()">Add Yard Details </a>
                 <br />
                 <div id="DisplayGrid" style="display: none">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
+                   
                             <asp:GridView ID="subyardGrid" runat="server" AutoGenerateColumns="False" Width="300px">
 
                                 <Columns>
@@ -419,8 +417,7 @@
                                 </Columns>
 
                             </asp:GridView>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+                        
                 </div>
 
             </div>
@@ -452,6 +449,11 @@
                         <td class="auto-style5">&nbsp;</td>
                         <td class="auto-style10">
                            
+                           <asp:ScriptManager ID="scriptManager1" runat="server"></asp:ScriptManager> 
+                            <asp:UpdatePanel ID="updatePannel1" runat="server">
+                                <ContentTemplate>
+
+                                
                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5"
                                 nPageIndexChanging="GridView1_PageIndexChanging"
                                 DataKeyNames="MarketId" OnRowEditing="GridView1_RowEditing"
@@ -535,7 +537,12 @@
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
-
+    </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="GridView1" EventName="RowUpdating"/>
+                                    <asp:AsyncPostBackTrigger ControlID="GridView1" EventName="RowCancelingEdit" />
+                                </Triggers>
+</asp:UpdatePanel>
 
                             <br />
                         </td>
